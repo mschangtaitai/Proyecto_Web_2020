@@ -1,7 +1,7 @@
 import * as types from '../../types/auth/index'
-export const startLogin = (email, password) => ({
+export const startLogin = (username, password) => ({
     type: types.AUTHENTICATION_STARTED,
-    payload: { email, password },
+    payload: { username, password },
   });
   
 export const completeLogin = token => ({

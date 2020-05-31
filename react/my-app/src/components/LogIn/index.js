@@ -103,6 +103,7 @@ export default connect(
   }),
   dispatch => ({
     onSubmit(username, password) {
+      console.log(username, password)
       dispatch(actions.startLogin(username, password));
     },
   }),

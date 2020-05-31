@@ -9,15 +9,18 @@ import {
 } from 'redux-saga/effects';
   
  // import * as selectors from '.';
-  import * as actions from '../../actions/auth/index';
-  import * as types from '../../types/auth/';
+import * as actions from '../../actions/auth/index';
+import * as types from '../../types/auth/';
+import * as selectors from '../../reducers'
 
+const API_BASE_URL = 'http://127.0.0.1:8000';
 
 export function* login(action) {
     try {
+        console.log(API_BASE_URL)
         const response = yield call(
             fetch,
-            `${API_BASE_URL}/auth/login/`,
+            `${API_BASE_URL}/api/v1/token-auth/`,
             {
                 method: 'POST',
                 body: JSON.stringify(action.payload),
@@ -29,6 +32,8 @@ export function* login(action) {
 
         if (response.status === 200) {
             const { token } = yield response.json()
+            console.log(token)
+            console.log('hola')
             yield put(actions.completeLogin(token))
         } else {
             const { non_field_errors } = yield response.json()

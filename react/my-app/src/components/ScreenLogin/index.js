@@ -41,21 +41,21 @@ export const ScreenLogin = ({ authUsername = ''}) => {
   return (
     <Router>
       <div>
-        <div class='container'>
-          <div class='row menuAuth'>
-              <div class='col-sm-12'>
+        <div className='container'>
+          <div className='row menuAuth'>
+              <div className='col-sm-12'>
               <li>
                 <Link exact to="/home" className='link'>Home</Link>
               </li>
 
               </div>
-              <div class='col-sm-12'>
+              <div className='col-sm-12'>
               <li>
                 <Link to="/sign-up" className='link'>Sign Up</Link>
               </li>
 
               </div>
-              <div class='col-sm-12'>
+              <div className='col-sm-12'>
               <li>
               <Link to="/log-in" className='link'>Log in</Link>
 
