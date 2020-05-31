@@ -3,7 +3,6 @@ from django.db import models
 
 class User(AbstractUser):
   name = models.TextField(max_length=100, blank=True)
-  email = models.TextField(max_length=100, blank=True)
   career = models.ForeignKey(
     'careers.Career', 
     on_delete=models.SET_NULL,
