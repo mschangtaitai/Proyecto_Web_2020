@@ -13,3 +13,20 @@ from universities.serializers import UniversitySerializer
 class UniversityViewSet(viewsets.ModelViewSet):
     queryset = University.objects.all()
     serializer_class = UniversitySerializer
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='UniversityPermission',
+            permission_configuration={
+                'base': {
+                    'create': False,
+                    'list': False,
+                },
+                'instance': {
+                    'retrieve': False,
+                    'destroy': False,
+                    'update': False,
+                    'partial_update': False,
+                }
+            }
+        ),
+    )

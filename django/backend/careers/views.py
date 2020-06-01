@@ -13,3 +13,20 @@ from careers.serializers import CareerSerializer
 class CareerViewSet(viewsets.ModelViewSet):
     queryset = Career.objects.all()
     serializer_class = CareerSerializer
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='CareerPermission',
+            permission_configuration={
+                'base': {
+                    'create': 'careers.add_career',
+                    'list': True,
+                },
+                'instance': {
+                    'retrieve': True,
+                    'destroy': 'careers.delete_career',
+                    'update': 'careers.change_career',
+                    'partial_update': 'careers.change_career',
+                }
+            }
+        ),
+    )
