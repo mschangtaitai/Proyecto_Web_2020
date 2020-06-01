@@ -1,0 +1,17 @@
+.menuAuth {
+    background-color: #3B70E3;
+    display: flex;  
+    
+}
+
+li {
+    list-style: none;
+}
+
+.link {
+    color: white;
+}
+
+.col-sm-12 {
+    text-align: center;
+}

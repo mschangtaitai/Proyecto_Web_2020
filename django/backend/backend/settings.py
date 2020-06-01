@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'guardian',
+    'corsheaders',
+
 
     'careers.apps.CareersConfig',
     'faculties.apps.FacultiesConfig',
@@ -65,6 +67,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #added because of problems of CORS
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -96,7 +101,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Project_web',
         'USER': 'postgres',
-        'PASSWORD': 'ohdude9912',
+        'PASSWORD': 'hola mundo',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -161,3 +166,5 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'guardian.backends.ObjectPermissionBackend'
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
