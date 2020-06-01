@@ -12,3 +12,20 @@ from faculties.serializers import FacultySerializer
 class FacultyViewSet(viewsets.ModelViewSet):
     queryset = Faculty.objects.all()
     serializer_class = FacultySerializer
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='facultyPermission',
+            permission_configuration={
+                'base': {
+                    'create': 'faculties.add_faculty',
+                    'list': True,
+                },
+                'instance': {
+                    'retrieve': True,
+                    'destroy': 'faculties.delete_faculty',
+                    'update': 'faculties.change_faculty',
+                    'partial_update': 'faculties.change_faculty',
+                }
+            }
+        ),
+    )

@@ -10,3 +10,20 @@ from users.serializers import UserSerializer
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='UserPermission',
+            permission_configuration={
+                'base': {
+                    'create': 'users.add_user',
+                    'list': True,
+                },
+                'instance': {
+                    'retrieve': 'users.view_user',
+                    'destroy': 'users.delete_user',
+                    'update': 'users.change_user',
+                    'partial_update': 'users.change_user',
+                }
+            }
+        ),
+    )

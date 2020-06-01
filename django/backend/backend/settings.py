@@ -49,7 +49,14 @@ INSTALLED_APPS = [
     'faculties.apps.FacultiesConfig',
     'universities.apps.UniversitiesConfig',
     'user_types.apps.UserTypesConfig',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'tutors.apps.TutorsConfig',
+    'classrooms.apps.ClassroomsConfig',
+    'courses.apps.CoursesConfig',
+    'events.apps.EventsConfig',
+    'event_types.apps.EventTypesConfig',
+    'hosts.apps.HostsConfig',
+
 ]
 
 MIDDLEWARE = [
