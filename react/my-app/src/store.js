@@ -9,6 +9,7 @@ import storage from 'redux-persist/lib/storage';
 
 import reducer from './reducers';
 import mainSaga from './sagas';
+import thunk from 'redux-thunk'
 
 
 export const configureStore = () => {
@@ -29,6 +30,7 @@ export const configureStore = () => {
 
   const store = composeEnhancers(
     applyMiddleware(sagaMiddleware),
+    applyMiddleware(thunk)
   )(createStore)(persistedReducer);
 
   const persistor = persistStore(store);
