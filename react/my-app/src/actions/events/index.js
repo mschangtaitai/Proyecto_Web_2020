@@ -49,7 +49,7 @@ export const failRemovingEvent = (id, error) => ({
 export const startFetchingEvents = () => ({
     type: types.EVENTS_FETCH_STARTED,
   });
-export const completeFetchingEvent = (entities, order) => ({
+export const completeFetchingEvents = (entities, order) => ({
     type: types.EVENTS_FETCH_COMPLETED,
     payload: {
         entities,

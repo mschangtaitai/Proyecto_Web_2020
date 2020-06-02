@@ -1,12 +1,12 @@
 from rest_framework import serializers
-
+from datetime import datetime
 from events.models import Event
 
-class UniversitySerializer(serializers.ModelSerializer):
-time = serializers.SerializerMethodField()
+class EventSerializer(serializers.ModelSerializer):
+    time = serializers.SerializerMethodField()
 
     class Meta:
-        model = University
+        model = Event
         fields = (
             'id',
             'title',
@@ -20,4 +20,6 @@ time = serializers.SerializerMethodField()
         )
 
     def get_time(self, obj):
-        return obj.endTime - obj.beginTime
+        format = '%H:%M:%S'
+        time = datetime.strptime(str(obj.endTime), format) - datetime.strptime(str(obj.beginTime), format)
+        return time

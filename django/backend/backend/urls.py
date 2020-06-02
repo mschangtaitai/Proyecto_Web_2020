@@ -26,6 +26,12 @@ from faculties.views import FacultyViewSet
 from careers.views import CareerViewSet
 from users.views import UserViewSet
 
+from events.views import EventViewSet
+from classrooms.views import ClassroomViewSet
+from courses.views import CourseViewSet
+from hosts.views import HostViewSet
+from tutors.views import TutorViewSet
+from event_types.views import EventTypeViewSet
 
 router = routers.DefaultRouter()
 
@@ -33,7 +39,11 @@ router.register(r'users', UserViewSet)
 router.register(r'universities', UniversityViewSet)
 router.register(r'faculties', FacultyViewSet)
 router.register(r'careers', CareerViewSet)
-
+router.register(r'events', EventViewSet)
+router.register(r'classrooms', ClassroomViewSet)
+router.register(r'courses', CourseViewSet)
+router.register(r'hosts', HostViewSet)
+router.register(r'event_types', EventTypeViewSet)
 
 
 urlpatterns = [

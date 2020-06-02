@@ -4,18 +4,23 @@ import {
   watchLoginStarted,
   watchRefreshTokenStarted,
 } from './auth/index';
-/*import {
-    watchUserFetch
-} from './user/index'*/
 
-export default rootSaga;
+import {
+    watchEventFetch,
+    watchaddEvent,
+    watchRemoveEvent
+} from './events/index'
+
 
 
 function* rootSaga() {
   yield all([
     fork(watchLoginStarted),
     fork(watchRefreshTokenStarted),
-    //fork(watchUserFetch)
+    fork(watchEventFetch),
+    fork(watchaddEvent),
+    fork(watchRemoveEvent)
   ]);
 }
 
+export default rootSaga;

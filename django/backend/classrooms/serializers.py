@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
-from tutors.models import Tutor
+from classrooms.models import Classroom
 
-class TutorSerializer(serializers.ModelSerializer):
+class ClassroomSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tutor
+        model = Classroom
         fields = (
             'id',
             'course'

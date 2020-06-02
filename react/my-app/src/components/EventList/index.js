@@ -6,8 +6,9 @@ import * as selectors from '../../reducers';
 import * as actions from '../../actions/events';
 import EventRow from '../EventRow';
 
-const EventList = ({ event, isLoading, onLoad }) => {
-  useEffect(onLoad, []);
+const EventList = ({ event, isLoading, fetch, error }) => {
+  useEffect(fetch, []);
+
   return (
     <Fragment>
       {
@@ -41,8 +42,9 @@ export default connect(
     isLoading: selectors.isFetchingEvents(state),
   }),
   dispatch => ({
-    onLoad() {
-      dispatch(actions.startFetchingEvents());
+    fetch(){
+        dispatch(actions.startFetchingEvents)
     },
+
   }),
-)(EventList);
+)(EventList)

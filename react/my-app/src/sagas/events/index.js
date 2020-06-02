@@ -7,23 +7,26 @@ import {
     delay,
     select,
 } from 'redux-saga/effects';
-  
+import { normalize } from 'normalizr'
  // import * as selectors from '.';
 import * as actions from '../../actions/events';
 import * as types from '../../types/events';
 import * as selectors from '../../reducers'
+import * as schemas from '../../schemas/events'
 
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
 function* fetchEvents(action) {
+    console.log(fetchEvents)
     try {
       const isAuth = yield select(selectors.isAuthenticated);
-  
+      console.log('hellow')
       if (isAuth) {
+        console.log('yep, si estoy autorizado')
         const token = yield select(selectors.getAuthToken);
         const response = yield call(
           fetch,
-          `${API_BASE_URL}/owners/`,
+          `${API_BASE_URL}/api/v1/events/`,
           {
             method: 'GET',
             headers:{
@@ -32,23 +35,26 @@ function* fetchEvents(action) {
             },
           }
         );
+        
   
-        if (response.status === 200) {
-          const jsonResult = yield response.json();
+        if (response.status === 200 || response.status === 201) {
+            console.log(response)
+            const jsonResult = yield response.json();
           const {
             entities: { events },
             result,
           } = normalize(jsonResult, schemas.events);
-  
+        
           yield put(
-            actions.completeFetchingevents(
+            actions.completeFetchingEvents(
               events,
               result,
             ),
           );
+
         } else {
-          // const { non_field_errors } = yield response.json();
-          // yield put(actions.failLogin(non_field_errors[0]));
+          const { non_field_errors } = yield response.json();
+          yield put(actions.failFetchingEvent(Error));
         }
       }
     } catch (error) {
@@ -60,7 +66,7 @@ function* fetchEvents(action) {
   
   export function* watchEventFetch() {
     yield takeEvery(
-      types.PET_OWNERS_FETCH_STARTED,
+      types.EVENT_ADDED_STARTED,
       fetchEvents,
     );
   }
@@ -73,7 +79,7 @@ function* fetchEvents(action) {
         const token = yield select(selectors.getAuthToken);
         const response = yield call(
           fetch,
-          `${API_BASE_URL}/owners/`,
+          `${API_BASE_URL}/api/v1/events/`,
           {
             method: 'POST',
             body: JSON.stringify(action.payload),
@@ -98,7 +104,7 @@ function* fetchEvents(action) {
           // } = normalize(jsonResult, schemas.events);
   
           // yield put(
-          //   actions.completeFetchingevents(
+          //   actions.completeFetchingEvents(
           //     events,
           //     result,
           //   ),
@@ -116,12 +122,12 @@ function* fetchEvents(action) {
   
   export function* watchaddEvent() {
     yield takeEvery(
-      types.PET_OWNER_ADD_STARTED,
+      types.EVENT_ADDED_STARTED,
       addEvent,
     );
   }
   
-  function* removeEvent(action) {
+function* removeEvent(action) {
     try {
       const isAuth = yield select(selectors.isAuthenticated);
   
@@ -129,7 +135,7 @@ function* fetchEvents(action) {
         const token = yield select(selectors.getAuthToken);
         const response = yield call(
           fetch,
-          `${API_BASE_URL}/owners/${action.payload.id}/`,
+          `${API_BASE_URL}/api/v1/events/${action.payload.id}/`,
           {
             method: 'DELETE',
             headers:{
@@ -140,14 +146,14 @@ function* fetchEvents(action) {
         );
   
         if (response.status === 200) {
-          yield put(actions.completeRemovingPetOwner());
+          yield put(actions.completeRemovingEvent());
           // const {
           //   entities: { events },
           //   result,
           // } = normalize(jsonResult, schemas.events);
   
           // yield put(
-          //   actions.completeFetchingevents(
+          //   actions.completeFetchingEvents(
           //     events,
           //     result,
           //   ),
@@ -165,7 +171,7 @@ function* fetchEvents(action) {
   
   export function* watchRemoveEvent() {
     yield takeEvery(
-      types.EVENT_REMOVE_STARTED,
+      types.EVENT_REMOVED_STARTED,
       removeEvent,
     );
   }
