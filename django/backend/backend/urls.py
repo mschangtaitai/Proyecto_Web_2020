@@ -33,6 +33,10 @@ router.register(r'users', UserViewSet)
 router.register(r'universities', UniversityViewSet)
 router.register(r'faculties', FacultyViewSet)
 router.register(r'careers', CareerViewSet)
+router.register(r'careers', CareerViewSet)
+router.register(r'careers', CareerViewSet)
+router.register(r'careers', CareerViewSet)
+router.register(r'careers', CareerViewSet)
 
 
 

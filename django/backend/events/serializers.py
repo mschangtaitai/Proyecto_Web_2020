@@ -3,7 +3,7 @@ from rest_framework import serializers
 from events.models import Event
 
 class UniversitySerializer(serializers.ModelSerializer):
-time = serializers.SerializerMethodField()
+    time = serializers.SerializerMethodField()
 
     class Meta:
         model = University
@@ -19,5 +19,3 @@ time = serializers.SerializerMethodField()
             'time',
         )
 
-    def get_time(self, obj):
-        return obj.endTime - obj.beginTime
