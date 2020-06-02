@@ -19,7 +19,7 @@ function* rootSaga() {
     fork(watchRefreshTokenStarted),
     fork(watchEventFetch),
     fork(watchaddEvent),
-    fork(watchRemoveEvent)
+    fork(watchRemoveEvent),
   ]);
 }
 
