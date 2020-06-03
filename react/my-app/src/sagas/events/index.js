@@ -99,10 +99,10 @@ function* fetchEvents(action) {
               jsonResult,
             ),
           );
-          // const {
-          //   entities: { events },
-          //   result,
-          // } = normalize(jsonResult, schemas.events);
+          const {
+          entities: { events },
+          result,
+          } = normalize(jsonResult, schemas.events);
   
           // yield put(
           //   actions.completeAddingEvent(
