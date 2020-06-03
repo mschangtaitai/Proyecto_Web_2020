@@ -45,7 +45,7 @@ const CreateEventForm = ({
       <div class='col-sm-12'>
       <p>
         <input
-          type="typeEvent"
+          type="number"
           placeholder="typeEvent"
           value={typeEvent}
           onChange={e => setTypeEvent(e.target.value)}

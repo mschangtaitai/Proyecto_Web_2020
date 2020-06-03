@@ -89,7 +89,10 @@ function* fetchEvents(action) {
             },
           }
         );
-  
+        console.log(response)
+        console.log(response.status)
+        console.log('payload')
+        console.log(action.payload)
         if (response.status === 201) {
           const jsonResult = yield response.json();
           yield put(
@@ -98,20 +101,20 @@ function* fetchEvents(action) {
               jsonResult,
             ),
           );
-          // const {
-          //   entities: { events },
-          //   result,
-          // } = normalize(jsonResult, schemas.events);
+          const {
+          entities: { events },
+          result,
+          } = normalize(jsonResult, schemas.events);
   
-          // yield put(
-          //   actions.completeFetchingEvents(
-          //     events,
-          //     result,
-          //   ),
-          // );
+          yield put(
+             actions.completeFetchingEvents(
+               events,
+               result,
+             ),
+           );
         } else {
-          // const { non_field_errors } = yield response.json();
-          // yield put(actions.failLogin(non_field_errors[0]));
+           const { non_field_errors } = yield response.json();
+           yield put(actions.failFetchingEvent(non_field_errors[0]));
         }
       }
     } catch (error) {
