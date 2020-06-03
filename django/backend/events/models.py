@@ -8,6 +8,12 @@ class Event(models.Model):
         null=True,
         blank=True
     )
+    classroom = models.ForeignKey(
+        'classrooms.Classroom',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
     description = models.CharField(max_length=5000)
     date = models.DateField()
     beginTime = models.TimeField()
