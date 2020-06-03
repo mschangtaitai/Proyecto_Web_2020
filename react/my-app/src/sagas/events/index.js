@@ -66,7 +66,7 @@ function* fetchEvents(action) {
   
   export function* watchEventFetch() {
     yield takeEvery(
-      types.EVENT_ADDED_STARTED,
+      types.EVENTS_FETCH_STARTED,
       fetchEvents,
     );
   }
@@ -82,14 +82,15 @@ function* fetchEvents(action) {
           `${API_BASE_URL}/api/v1/events/`,
           {
             method: 'POST',
-            body: JSON.stringify(action.payload),
+            body: JSON.stringify(action.payload.event),
             headers:{
               'Content-Type': 'application/json',
               'Authorization': `JWT ${token}`,
             },
           }
         );
-  
+          
+        console.log(action.payload)
         if (response.status === 201) {
           const jsonResult = yield response.json();
           yield put(
@@ -104,14 +105,14 @@ function* fetchEvents(action) {
           // } = normalize(jsonResult, schemas.events);
   
           // yield put(
-          //   actions.completeFetchingEvents(
+          //   actions.completeAddingEvent(
           //     events,
           //     result,
           //   ),
           // );
         } else {
           // const { non_field_errors } = yield response.json();
-          // yield put(actions.failLogin(non_field_errors[0]));
+          // yield put(actions.failAddingEvent(non_field_errors[0]));
         }
       }
     } catch (error) {

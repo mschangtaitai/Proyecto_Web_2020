@@ -18,6 +18,7 @@ class EventSerializer(serializers.ModelSerializer):
             'endTime',
             'host',
             'time',
+            'capacity'
         )
 
     def get_time(self, obj):

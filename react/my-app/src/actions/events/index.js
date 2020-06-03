@@ -10,7 +10,7 @@ export const startAddingEvent = event => ({
 })
 
 export const completeAddingEvent = (oldId, event) => ({
-    type: types.EVENT_ADDED_STARTED,
+    type: types.EVENT_ADDED_COMPLETED,
     payload: {
         oldId,
         event
