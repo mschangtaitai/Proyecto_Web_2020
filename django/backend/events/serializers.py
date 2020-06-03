@@ -11,6 +11,7 @@ class EventSerializer(serializers.ModelSerializer):
             'id',
             'title',
             'event_type',
+            'classroom',
             'description',
             'date',
             'beginTime',
