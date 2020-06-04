@@ -1,7 +1,7 @@
 import omit from 'lodash/omit';
 import { combineReducers } from 'redux';
 import * as types from '../../types/events'
-
+import uniqBy from 'lodash/uniqBy'
 const byId = (state = {}, action) => {
     switch(action.type) {
       case types.EVENTS_FETCH_COMPLETED: {
@@ -45,20 +45,21 @@ const byId = (state = {}, action) => {
 const order = (state = [], action) => {
     switch(action.type) {
         case types.EVENTS_FETCH_COMPLETED: {
-        return [...state, ...action.payload.order];
+         const newOrder = [...state, ...action.payload.order]
+         return uniqBy(newOrder);
         }
         case types.EVENT_ADDED_STARTED: {
-        return [...state, action.payload.id];
+          return [...state, action.payload.id];
         }
         case types.EVENT_ADDED_COMPLETED: {
-        const { oldId, event } = action.payload;
-        return state.map(id => id === oldId ? event.id : id);
+          const { oldId, event } = action.payload;
+          return state.map(id => id === oldId ? event.id : id);
         }
         case types.EVENT_REMOVED_STARTED: {
-        return state.filter(id => id !== action.payload.id);
+          return state.filter(id => id !== action.payload.id);
         }
         default: {
-        return state;
+          return state;
         }
     }
 };
@@ -79,7 +80,7 @@ const isFetching = (state = false, action) => {
         return state;
       }
     }
-  };
+};
 
 const error = (state = null, action) => {
 switch(action.type) {

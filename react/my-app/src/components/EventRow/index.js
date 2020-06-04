@@ -8,24 +8,31 @@ import * as actions from '../../actions/events';
 import { user } from '../../schemas/users';
 
 
-const EventRow = ({ name, onDelete, onAction, isConfirmed = false }) => (
+const EventRow = ({ event, id, onDelete, onAction, isConfirmed = false }) => (
   <Fragment>
-  <div className={!isConfirmed ? 'event-row' : ''}>
-    <div>{ name }</div>
-    <div>
+  <tr className={!isConfirmed ? 'event-row' : ''}>
+    <td>{ event.title }</td>
+    <td>{event.date}</td>
+    <td> {event.description}</td>
+    <td> {event.beginTime}</td>
+    <td> {event.endTime}</td>
+
+    <td>
         {
+          //isConfirmed && (
             <button onClick={onAction}>
               {'action'}
             </button>
+          //)
         }
-    </div>
-    <div>
+    </td>
+    <td>
       <button onClick={onDelete}>
       {'Borrar'}
       </button>
-    </div>
-
-  </div>
+    </td>
+    
+  </tr>
   </Fragment>
 
 );
