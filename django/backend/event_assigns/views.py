@@ -38,7 +38,7 @@ class EventAssignViewSet(viewsets.ModelViewSet):
             eventData = request.data['event']
             eventAssigns = EventAssign.objects.filter(event = eventData)
             print("Este es el event Data : " + eventData)
-            for user in eventAssigns:
+            for User in eventAssigns:
                 response.append(UserSerializer(event.user).data)
             return Response(response)
         except:
