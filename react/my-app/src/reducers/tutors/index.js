@@ -1,6 +1,8 @@
 import omit from 'lodash/omit'
 import { combineReducers } from 'redux'
 import * as types from '../../types/tutors'
+import uniqBy from 'lodash/uniqBy'
+
 
 const byId = (state = {}, action) => {
   switch(action.type) {
@@ -45,7 +47,8 @@ const byId = (state = {}, action) => {
 const order = (state = [], action) => {
   switch(action.type) {
       case types.TUTORS_FETCH_COMPLETED: {
-      return [...state, ...action.payload.order];
+      const newOrder = [...state, ...action.payload.order];
+      return uniqBy(newOrder);
       }
       case types.TUTOR_ADDED_STARTED: {
       return [...state, action.payload.id];

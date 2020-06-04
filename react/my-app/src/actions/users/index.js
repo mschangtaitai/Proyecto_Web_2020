@@ -55,7 +55,7 @@ export const completeFetchingUsers = (entities, order) => ({
       order,
   },
 });
-export const failFetchingUser = error => ({
+export const failFetchingUsers = error => ({
   type: types.USERS_FETCH_FAILED,
   payload: {
       error,

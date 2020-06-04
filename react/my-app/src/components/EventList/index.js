@@ -15,6 +15,7 @@ const EventList = ({ events, isLoading, fetch, error}) => {
 
   return (
     <Fragment>
+      <h1>Events</h1>
       {
         events.length === 0 && !isLoading && (
           <p>{'No hay eventos registrados'}</p>

@@ -27,10 +27,9 @@ function* fetchTutors(action) {
       const token = yield select(selectors.getAuthToken);
       const response = yield call(
         fetch,
-        `${API_BASE_URL}/api/v1/tutors/coursetutors/`,
+        `${API_BASE_URL}/api/v1/tutors/`,
         {
-          method: 'POST',
-          body: JSON.stringify(action.payload),
+          method: 'GET',
           headers:{
             'Content-Type': 'application/json',
             'Authorization': `JWT ${token}`,

@@ -17,7 +17,7 @@ const EventRow = ({ event, id, onDelete, onAction, isConfirmed = false }) => (
     <td> {event.beginTime}</td>
     <td> {event.endTime}</td>
 
-    <td>
+    {/* <td>
         {
           //isConfirmed && (
             <button onClick={onAction}>
@@ -25,7 +25,7 @@ const EventRow = ({ event, id, onDelete, onAction, isConfirmed = false }) => (
             </button>
           //)
         }
-    </td>
+    </td> */}
     <td>
       <button onClick={onDelete}>
       {'Borrar'}
@@ -46,12 +46,12 @@ export default connect(
       dispatch(actions.startRemovingEvent(id));
     },
 
-    onAction() {
-      // if(user.group = 'student'){
-      //   dispatch(actions.startEvenAssign(id))
-      // } else {
-      //   dispatch(actions.startFetchingUser(id))
-      // }
-    }
+    // onAction() {
+    //   // if(user.group = 'student'){
+    //   //   dispatch(actions.startEvenAssign(id))
+    //   // } else {
+    //   //   dispatch(actions.startFetchingUser(id))
+    //   // }
+    // }
   }),
 )(EventRow);
