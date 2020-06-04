@@ -15,4 +15,4 @@ class EventAssign(models.Model):
     )
 
     def __str__(self):
-        return 'Event assign: {}'.format(self.name)
+        return 'Event assign: {}'.format(self.user)

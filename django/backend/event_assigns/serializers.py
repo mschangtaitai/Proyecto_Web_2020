@@ -4,7 +4,7 @@ from event_assigns.models import EventAssign
 
 class EventAssignSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Host
+        model = EventAssign
         fields = (
             'id',
             'user',

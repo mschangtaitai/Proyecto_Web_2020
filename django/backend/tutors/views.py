@@ -38,7 +38,9 @@ class TutorViewSet(viewsets.ModelViewSet):
     def courseTutors(self, request):
         try:
             response = []
+            print(request)
             courseData = request.data['course_id']
+            print('course Data antes de tutors' + courseData)
             tutors = Tutor.objects.filter(course = courseData)
             print("Este es el course Data : " + courseData)
             for tutor in tutors:

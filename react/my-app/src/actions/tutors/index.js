@@ -47,6 +47,9 @@ export const failRemovingTutor = (id, error) => ({
 //FETCHING
 export const startFetchingTutors = () => ({
   type: types.TUTORS_FETCH_STARTED,
+  payload: {
+    // course
+  }
 });
 export const completeFetchingTutors = (entities, order) => ({
   type: types.TUTORS_FETCH_COMPLETED,
