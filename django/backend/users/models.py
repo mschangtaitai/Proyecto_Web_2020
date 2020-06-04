@@ -9,6 +9,7 @@ class User(AbstractUser):
     null=True,
     blank=True
   )
+  hours = models.PositiveIntegerField(default = 0)
 
   def __str__(self):
     return 'User: {}'.format(self.name)

@@ -7,5 +7,6 @@ class TutorSerializer(serializers.ModelSerializer):
         model = Tutor
         fields = (
             'id',
+            'user_id',
             'course'
         )

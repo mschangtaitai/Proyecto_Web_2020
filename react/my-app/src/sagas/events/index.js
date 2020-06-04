@@ -17,7 +17,7 @@ import * as schemas from '../../schemas/events'
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
 function* fetchEvents(action) {
-    console.log(fetchEvents)
+    console.log('Intentando fetchear')
     try {
       const isAuth = yield select(selectors.isAuthenticated);
       console.log('hellow')
@@ -77,6 +77,7 @@ function* fetchEvents(action) {
   
       if (isAuth) {
         const token = yield select(selectors.getAuthToken);
+        console.log(action.payload.event)
         const response = yield call(
           fetch,
           `${API_BASE_URL}/api/v1/events/`,

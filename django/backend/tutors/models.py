@@ -1,7 +1,7 @@
 from django.db import models
 
 class Tutor(models.Model):
-    user = models.ForeignKey(
+    user_id = models.ForeignKey(
         'users.User',
         on_delete=models.SET_NULL,
         null=True,
@@ -15,4 +15,4 @@ class Tutor(models.Model):
     )
 
     def __str__(self):
-        return 'Tutor: {}'.format(self.name)
+        return 'Tutor: {}'.format(self.user_id)

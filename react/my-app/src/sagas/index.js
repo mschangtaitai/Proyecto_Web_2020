@@ -11,6 +11,12 @@ import {
     watchRemoveEvent
 } from './events/index'
 
+import {
+  watchTutorFetch,
+  watchAddTutor,
+  watchRemoveTutor
+} from './tutors/index'
+
 
 
 function* rootSaga() {
@@ -20,6 +26,9 @@ function* rootSaga() {
     fork(watchEventFetch),
     fork(watchaddEvent),
     fork(watchRemoveEvent),
+    fork(watchTutorFetch),
+    fork(watchAddTutor),
+    fork(watchRemoveTutor),
   ]);
 }
 
