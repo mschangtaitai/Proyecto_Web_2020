@@ -6,8 +6,12 @@ import * as selectors from '../../reducers';
 import * as actions from '../../actions/events';
 import EventRow from '../EventRow';
 
-const EventList = ({ event, isLoading, fetch, error }) => {
+
+const EventList = ({ event, isLoading, fetch, error}) => {
+  // event.length = 0
+  // let cant = array.length
   useEffect(fetch, []);
+
 
   return (
     <Fragment>
@@ -26,7 +30,9 @@ const EventList = ({ event, isLoading, fetch, error }) => {
           <table>
             <tbody>
               {
+
                 event.map(({ id }) => <EventRow key={id} id={id} />)
+                
               }
             </tbody>
           </table>
@@ -43,7 +49,7 @@ export default connect(
   }),
   dispatch => ({
     fetch(){
-        dispatch(actions.startFetchingEvents)
+        dispatch(actions.startFetchingEvents())
     },
 
   }),

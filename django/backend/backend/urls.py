@@ -44,6 +44,7 @@ router.register(r'classrooms', ClassroomViewSet)
 router.register(r'courses', CourseViewSet)
 router.register(r'hosts', HostViewSet)
 router.register(r'event_types', EventTypeViewSet)
+router.register(r'tutors', TutorViewSet)
 
 
 urlpatterns = [

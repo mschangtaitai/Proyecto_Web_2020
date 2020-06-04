@@ -4,14 +4,20 @@ import { connect } from 'react-redux';
 import './styles.css';
 import * as selectors from '../../reducers';
 import * as actions from '../../actions/events';
+import { user } from '../../schemas/users';
 
 
-const EventRow = ({ name, onDelete, isConfirmed = false }) => (
+const EventRow = ({ name, onDelete, onAction isConfirmed = false }) => (
   <tr className={!isConfirmed ? 'pet-owner-row--pending' : ''}>
     <td>{ name }</td>
     <td>
       {
         isConfirmed && (
+          <button
+            onClick={onAction}
+          >
+            {'action'}
+          </button>
           <button
             onClick={onDelete}
           >
@@ -30,6 +36,14 @@ export default connect(
   (dispatch, { id }) => ({
     onDelete() {
       dispatch(actions.startRemovingEvent(id));
+    },
+
+    onAction() {
+      // if(user.group = 'student'){
+      //   dispatch(actions.startEvenAssign(id))
+      // } else {
+      //   dispatch(actions.startFetchingUser(id))
+      // }
     }
   }),
 )(EventRow);

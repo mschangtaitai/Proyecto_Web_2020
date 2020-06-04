@@ -5,6 +5,7 @@ from rest_framework.response import Response
 
 from permissions.services import APIPermissionClassFactory
 from users.models import User
+from tutors.models import Tutor
 from users.serializers import UserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -27,3 +28,4 @@ class UserViewSet(viewsets.ModelViewSet):
             }
         ),
     )
+

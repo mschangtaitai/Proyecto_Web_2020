@@ -19,8 +19,8 @@ class EventTypeViewSet(viewsets.ModelViewSet):
                     'list': True,
                 },
                 'instance': {
-                    'retrieve': 'event_types.view_event_type',
-                    'destroy': 'event_types.delete_event_type',
+                    'retrieve': True,
+                    'destroy': True,
                     'update': 'event_types.change_event_type',
                     'partial_update': 'event_types.change_event_type',
                 }
