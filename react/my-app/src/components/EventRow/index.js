@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { connect } from 'react-redux';
+
 
 import './styles.css';
 import * as selectors from '../../reducers';
@@ -7,26 +8,33 @@ import * as actions from '../../actions/events';
 import { user } from '../../schemas/users';
 
 
-const EventRow = ({ name, onDelete, onAction isConfirmed = false }) => (
-  <tr className={!isConfirmed ? 'pet-owner-row--pending' : ''}>
-    <td>{ name }</td>
+const EventRow = ({ event, id, onDelete, onAction, isConfirmed = false }) => (
+  <Fragment>
+  <tr className={!isConfirmed ? 'event-row' : ''}>
+    <td>{ event.title }</td>
+    <td>{event.date}</td>
+    <td> {event.description}</td>
+    <td> {event.beginTime}</td>
+    <td> {event.endTime}</td>
+
     <td>
-      {
-        isConfirmed && (
-          <button
-            onClick={onAction}
-          >
-            {'action'}
-          </button>
-          <button
-            onClick={onDelete}
-          >
-            {'Borrar'}
-          </button>
-        )
-      }
+        {
+          //isConfirmed && (
+            <button onClick={onAction}>
+              {'action'}
+            </button>
+          //)
+        }
     </td>
+    <td>
+      <button onClick={onDelete}>
+      {'Borrar'}
+      </button>
+    </td>
+    
   </tr>
+  </Fragment>
+
 );
 
 export default connect(
