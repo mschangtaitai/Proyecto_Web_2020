@@ -21,7 +21,7 @@ class EventAssignViewSet(viewsets.ModelViewSet):
                     'list': True,
                 },
                 'instance': {
-                    'retrieve': 'event_assigns.view_event_assign',
+                    'retrieve': True,
                     'destroy': 'event_assigns.delete_event_assign',
                     'update': 'event_assigns.change_event_assign',
                     'partial_update': 'event_assigns.change_event_assign',

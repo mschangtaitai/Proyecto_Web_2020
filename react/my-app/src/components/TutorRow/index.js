@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import './styles.css';
@@ -6,21 +6,19 @@ import * as selectors from '../../reducers';
 import * as actions from '../../actions/tutors';
 
 
-const TutorRow = ({ name, onDelete, isConfirmed = false }) => (
-  <tr className='tutor'>
-    <td>{ name }</td>
-    <td>
-      {
-        isConfirmed && (
-          <button
-            onClick={onDelete}
-          >
-            {'Borrar'}
-          </button>
-        )
-      }
-    </td>
-  </tr>
+const TutorRow = ({ tutor, onDelete, isConfirmed = false }) => (
+  <Fragment>
+  <div className={!isConfirmed ? 'tutor-row' : ''}>
+    <div>{ tutor }</div>
+    <div>
+      <p>Este es un tutor</p>
+      <button onClick={onDelete}>
+      {'Borrar'}
+      </button>
+    </div>
+
+  </div>
+  </Fragment>
 );
 
 export default connect(

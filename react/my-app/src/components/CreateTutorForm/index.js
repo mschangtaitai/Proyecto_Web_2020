@@ -8,8 +8,8 @@ const CreateTutorForm = ({
     onSubmit,
     isLoading
 }) => {
-  const [user_id, setUser_id] = useState('');
-  const [course, setCourse] = useState('');
+  const [user_id, setUser_id] = useState('')
+  const [course, setCourse] = useState('')
 
   return (
     <div class='container'>

@@ -16,17 +16,21 @@ const API_BASE_URL = 'http://127.0.0.1:8000'
 
 function* fetchTutors(action) {
   console.log('Intentando fetchear')
+  console.log(action)
   try {
     const isAuth = yield select(selectors.isAuthenticated);
     console.log('hellow')
     if (isAuth) {
       console.log('yep, si estoy autorizado')
+      console.log(action.payload)
+
       const token = yield select(selectors.getAuthToken);
       const response = yield call(
         fetch,
-        `${API_BASE_URL}/api/v1/tutors/`,
+        `${API_BASE_URL}/api/v1/tutors/coursetutors/`,
         {
-          method: 'GET',
+          method: 'POST',
+          body: JSON.stringify(action.payload),
           headers:{
             'Content-Type': 'application/json',
             'Authorization': `JWT ${token}`,
@@ -106,15 +110,15 @@ function* addTutor(action) {
         result,
         } = normalize(jsonResult, schemas.tutors);
 
-        // yield put(
-        //   actions.completeAddingTutor(
-        //     tutors,
-        //     result,
-        //   ),
-        // );
+        yield put(
+          actions.completeAddingTutor(
+            tutors,
+            result,
+          ),
+        );
       } else {
-        // const { non_field_errors } = yield response.json();
-        // yield put(actions.failAddingTutor(non_field_errors[0]));
+        const { non_field_errors } = yield response.json();
+        yield put(actions.failAddingTutor(Error));
       }
     }
   } catch (error) {

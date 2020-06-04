@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 // import './styles.css';
@@ -7,14 +7,30 @@ import * as actions from '../../actions/tutors';
 import TutorRow from '../TutorRow';
 
 
-const TutorList = ({ tutor, isLoading, fetch, error}) => {
+const TutorList = ({ tutor, isLoading, onSubmit}) => {
   // tutor.length = 0
   // let cant = array.length
-  useEffect(fetch, []);
-
+  const [course, setCourse] = useState('')
 
   return (
     <Fragment>
+      
+
+      <div class='col-sm-12'>
+      <p>
+        <input
+          type="number"
+          placeholder="course"
+          value={course}
+          onChange={e => setCourse(e.target.value)}
+        />
+      </p> 
+      <button type="submit" class='btn btn-primary' onClick={
+          () => onSubmit({course})
+        }>
+          {'Enviar'}
+      </button>      
+      </div>
       {
         tutor.length === 0 && !isLoading && (
           <p>{'No hay tutores registrados'}</p>
@@ -25,6 +41,7 @@ const TutorList = ({ tutor, isLoading, fetch, error}) => {
           <p>{'Cargando...'}</p>
         )
       }
+      
       {
         tutor.length > 0 && !isLoading && (
           <table>
@@ -48,8 +65,10 @@ export default connect(
     isLoading: selectors.isFetchingTutors(state),
   }),
   dispatch => ({
-    fetch(){
-        dispatch(actions.startFetchingTutors())
+    onSubmit(course){
+      console.log('El curso:')
+      console.log(course.course)
+      dispatch(actions.startFetchingTutors(course.course))
     },
 
   }),
