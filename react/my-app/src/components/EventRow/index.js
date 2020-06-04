@@ -8,7 +8,7 @@ import * as actions from '../../actions/events';
 import { user } from '../../schemas/users';
 
 
-const EventRow = ({ event, id, onDelete, onAction, isConfirmed = false }) => (
+const EventRow = ({ event, id, onDelete, joinEvent, isConfirmed = false }) => (
   <Fragment>
   <tr className={!isConfirmed ? 'event-row' : ''}>
     <td>{ event.title }</td>
@@ -20,8 +20,8 @@ const EventRow = ({ event, id, onDelete, onAction, isConfirmed = false }) => (
     <td>
         {
           //isConfirmed && (
-            <button onClick={onAction}>
-              {'action'}
+            <button onClick={joinEvent}>
+              {'unirme'}
             </button>
           //)
         }
@@ -46,7 +46,7 @@ export default connect(
       dispatch(actions.startRemovingEvent(id));
     },
 
-    onAction() {
+    joinEvent() {
       // if(user.group = 'student'){
       //   dispatch(actions.startEvenAssign(id))
       // } else {
