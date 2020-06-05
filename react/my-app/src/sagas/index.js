@@ -17,6 +17,12 @@ import {
   watchRemoveTutor
 } from './tutors/index'
 
+import {
+  watchUserFetch,
+  watchAddUser,
+  watchRemoveUser
+} from './user/index'
+
 
 
 function* rootSaga() {
@@ -29,6 +35,9 @@ function* rootSaga() {
     fork(watchTutorFetch),
     fork(watchAddTutor),
     fork(watchRemoveTutor),
+    fork(watchUserFetch),
+    fork(watchAddUser),
+    fork(watchRemoveUser),
   ]);
 }
 

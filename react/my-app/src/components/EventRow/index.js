@@ -17,7 +17,7 @@ const EventRow = ({ event, id, onDelete, joinEvent, isConfirmed = false }) => (
     <td> {event.beginTime}</td>
     <td> {event.endTime}</td>
 
-    <td>
+    {/* <td>
         {
           //isConfirmed && (
             <button onClick={joinEvent}>
@@ -25,7 +25,7 @@ const EventRow = ({ event, id, onDelete, joinEvent, isConfirmed = false }) => (
             </button>
           //)
         }
-    </td>
+    </td> */}
     <td>
       <button onClick={onDelete}>
       {'Borrar'}
