@@ -17,7 +17,7 @@ class EventAssignViewSet(viewsets.ModelViewSet):
             name='EventAssignPermission',
             permission_configuration={
                 'base': {
-                    'create': 'event_assigns.add_event_assign',
+                    'create': True,
                     'list': True,
                 },
                 'instance': {
