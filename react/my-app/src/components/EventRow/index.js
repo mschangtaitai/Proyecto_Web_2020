@@ -9,34 +9,38 @@ import { user } from '../../schemas/users';
 import * as authActions from '../../actions/auth/index'
 import * as actionsUserEvents from '../../actions/events_users'
 
-const EventRow = ({ fetch, event, id, onDelete, joinEvent, isConfirmed = false, userEvent, userid }) => {
-  console.log('este es el user_events')
-  console.log(userEvent)
-  useEffect(fetch, [])
-
-  return(
-    <Fragment>
-    <tr className={!isConfirmed ? 'event-row' : ''}>
-      <td>{ event.title }</td>
-      <td>{event.date}</td>
-      <td> {event.description}</td>
-      <td> {event.beginTime}</td>
-      <td> {event.endTime}</td>
-  {/*<td> {userEvent.length}/{event.capacity}</td>*/}
+const EventRow = ({ event, fetch, joinEvent, group = [], id, onDelete, onAction, isConfirmed = false }) => {
+  useEffect(fetch, []);
   
-     <td>
+  return(
+  <Fragment>
+  <tr className={!isConfirmed ? 'event-row' : ''}>
+    <td>{ event.title }</td>
+    <td>{event.date}</td>
+    <td> {event.description}</td>
+    <td> {event.beginTime}</td>
+    <td> {event.endTime}</td>
+    {
+      group != null && group[0] === true && (
+    <td>
         <button onClick={joinEvent}>
           {'unirme'}
         </button>
       </td> 
-      <td>
-        <button onClick={onDelete}>
-        {'Borrar'}
-        </button>
-      </td>
-      
-    </tr>
-    </Fragment>
+      )
+    }  
+    {
+    group != null && group[0] === false && (
+    <td>
+      <button onClick={onDelete}>
+      {'Borrar'}
+      </button>
+    </td>
+    )
+  } 
+    
+  </tr>
+  </Fragment>
   )
 };
 
