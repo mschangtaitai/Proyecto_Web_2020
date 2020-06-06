@@ -6,6 +6,7 @@ import './styles.css';
 import * as selectors from '../../reducers';
 import * as actions from '../../actions/events';
 import { user } from '../../schemas/users';
+import * as authActions from '../../actions/auth/index'
 import * as actionsUserEvents from '../../actions/events_users'
 
 const EventRow = ({ fetch, event, id, onDelete, joinEvent, isConfirmed = false, userEvent, userid }) => {
@@ -37,12 +38,12 @@ const EventRow = ({ fetch, event, id, onDelete, joinEvent, isConfirmed = false, 
     </tr>
     </Fragment>
   )
-
 };
 
 export default connect(
   (state, { id, userid }) => ({
     ...selectors.getEvent(state, id),
+    group: selectors.getGroup(state),
     //userEvent: selectors.getUser(state).filter(eventUser => eventUser.event == id)
     userEvent: selectors.getUsersOfEvent(state, id),
     userid: selectors.getAuthUserID(state)
@@ -52,6 +53,9 @@ export default connect(
     onDelete() {
       dispatch(actions.startRemovingEvent(id));
     },
+    fetch(){
+      dispatch(authActions.startGroupFetch())
+    },
     joinEvent() {
       const user_event = {
         id: uuidv4(),
@@ -60,18 +64,8 @@ export default connect(
       }
       dispatch(actionsUserEvents.startAddingUserEvent(user_event))
     },
-    fetch(){
+    fetch2(){
       dispatch(actionsUserEvents.startFetchingUsersEvents());
     },
-  }))(EventRow)
-
-
-  /*
-    onSubmit(values) {
-    const event = {
-        ...values,
-        id: uuidv4()
-    }
-    console.log(event)
-    dispatch(actions.startAddingEvent(event));
-  },*/
+  }),
+)(EventRow);

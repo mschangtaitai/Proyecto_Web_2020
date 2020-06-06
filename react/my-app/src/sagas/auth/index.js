@@ -7,11 +7,12 @@ import {
     delay,
     select,
 } from 'redux-saga/effects';
-  
+import { normalize, schema } from 'normalizr'
  // import * as selectors from '.';
 import * as actions from '../../actions/auth/index';
 import * as types from '../../types/auth/';
-import * as selectors from '../../reducers'
+import * as selectors from '../../reducers';
+import * as schemas from '../../schemas/groups'
 
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
@@ -51,6 +52,57 @@ export function* watchLoginStarted() {
     )
 }
 
+function* fetchGroup(action) {
+    console.log('Intentando fetchear grupo')
+    console.log(action)
+    try {
+      const isAuth = yield select(selectors.isAuthenticated);
+      console.log('hellow')
+      if (isAuth) {
+        console.log('yep, si estoy autorizado')
+        console.log(action.payload)
+  
+        const token = yield select(selectors.getAuthToken);
+        const userID = yield select(selectors.getAuthUserID);
+
+        const response = yield call(
+          fetch,
+          `${API_BASE_URL}/api/v1/users/${userID}/isstudent/`,
+          {
+            method: 'GET',
+            headers:{
+              'Content-Type': 'application/json',
+              'Authorization': `JWT ${token}`,
+            },
+          }
+        );
+        
+        console.log("La respuesta" )
+        console.log(response)
+        if (response.status === 200 || response.status === 201) {
+            const jsonResult = yield response.json()
+            const group = normalize(jsonResult, schemas.groups)
+            console.log(group)
+            console.log('aqui meti el grupo al estado')
+            yield put(actions.completeGroupFetch(group))
+        } else {
+          const { non_field_errors } = yield response.json();
+          yield put(actions.failGroupFetch(Error));
+        }
+      }
+    } catch (error) {
+       console.log("ERROR", error)
+       yield put(actions.failGroupFetch(Error));
+     
+    }
+  }
+  
+  export function* watchGroupFetch() {
+    yield takeEvery(
+      types.GROUP_FETCH_STARTED,
+      fetchGroup,
+    );
+  }
 
 function* refreshToken(action) {
 const expiration = yield select(selectors.getAuthExpiration);
