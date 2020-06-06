@@ -12,3 +12,6 @@ Para correr proyecto:
 -En la misma consola correr "yarn start"
 
 Listo!
+
+#link de funcionalidad 
+https://drive.google.com/drive/folders/1k4NAaoXHYjX908oToYYPTNUrka8nxFOW?usp=sharing
