@@ -1,6 +1,7 @@
 import omit from 'lodash/omit'
 import { combineReducers } from 'redux'
 import * as types from '../../types/events_users'
+import uniqBy from 'lodash/uniqBy'
 
 const byId = (state = {}, action) => {
   switch(action.type) {
@@ -45,6 +46,8 @@ const byId = (state = {}, action) => {
 const order = (state = [], action) => {
   switch(action.type) {
       case types.EVENTS_USERS_FETCH_COMPLETED: {
+        const newUserEvent = [...state, ...action.payload.order]
+        return uniqBy(newUserEvent)
       return [...state, ...action.payload.order];
       }
       case types.EVENT_USER_ADDED_STARTED: {
@@ -108,4 +111,4 @@ export const getEventUser = (state, id) => state.byId[id];
 export const getEventsUsers = state => state.order.map(id => getEventUser(state, id));
 export const isFetchingEventsUsers = state => state.isFetching;
 export const getFetchingEventsUsersError = state => state.error;
-export const getUsersOfEvent = (state, event_id) => getEventsUsers(state).filter( event_user => event_user.event_id == event_id)
+export const getUsersOfEvent = (state, event_id) => getEventsUsers(state).filter( event_user => event_user.event == event_id)

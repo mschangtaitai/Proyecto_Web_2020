@@ -148,18 +148,21 @@ function* removeEvent(action) {
         );
   
         if (response.status === 200) {
+          /*
+          const jsonResult = yield response.json();
           yield put(actions.completeRemovingEvent());
-          // const {
-          //   entities: { events },
-          //   result,
-          // } = normalize(jsonResult, schemas.events);
+           const {
+             entities: { events },
+             result,
+           } = normalize(jsonResult, schemas.events);
   
-          // yield put(
-          //   actions.completeFetchingEvents(
-          //     events,
-          //     result,
-          //   ),
-          // );
+           yield put(
+             actions.completeFetchingEvents(
+               events,
+               result,
+             ),
+           );
+           */
         } else {
           // const { non_field_errors } = yield response.json();
           // yield put(actions.failLogin(non_field_errors[0]));

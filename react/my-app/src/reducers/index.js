@@ -4,6 +4,7 @@ import events, * as eventSelectors from './event/index'
 import tutors, * as tutorSelectors from './tutors/index'
 import users, * as userSelectors from './users/index'
 import events_users, * as events_usersSelectors from './events_users/index'
+
 //import { reducer as formsReducer } from 'redux-form';
 //var formReducer = require('redux-form').reducer;
 
@@ -49,4 +50,4 @@ export const getEventUser = (state, id) => events_usersSelectors.getEventUser(st
 export const getEventsUsers = state => events_usersSelectors.getEventsUsers(state.events_users)
 export const isFetchinEventsUsers = state => events_usersSelectors.isFetchingEventsUsers(state.events_users)
 export const getFetchingEventsUsersError = state => events_usersSelectors.getFetchingEventsUsersError(state.events_users)
-export const getUsersOfEvent = state => events_usersSelectors.getUsersOfEvent(state.events_users)
+export const getUsersOfEvent = (state, event_id) => events_usersSelectors.getUsersOfEvent(state.events_users, event_id)
