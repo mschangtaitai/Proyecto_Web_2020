@@ -3,6 +3,7 @@ import { fork, all } from 'redux-saga/effects';
 import {
   watchLoginStarted,
   watchRefreshTokenStarted,
+  watchGroupFetch
 } from './auth/index';
 
 import {
@@ -23,8 +24,6 @@ import {
   watchRemoveUser
 } from './user/index'
 
-
-
 function* rootSaga() {
   yield all([
     fork(watchLoginStarted),
@@ -38,6 +37,7 @@ function* rootSaga() {
     fork(watchUserFetch),
     fork(watchAddUser),
     fork(watchRemoveUser),
+    fork(watchGroupFetch)
   ]);
 }
 

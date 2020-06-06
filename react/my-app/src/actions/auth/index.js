@@ -33,7 +33,6 @@ type: types.REGISTER_FAILED,
 payload: { error },
 })
 
-
 export const startTokenRefresh = () => ({
     type: types.TOKEN_REFRESH_STARTED,
   });
@@ -45,5 +44,22 @@ payload: { newToken },
 
 export const failTokenRefresh = error => ({
 type: types.TOKEN_REFRESH_FAILED,
+payload: { error },
+});
+
+export const startGroupFetch = () => ({
+  type: types.GROUP_FETCH_STARTED,
+});
+
+export const completeGroupFetch = (entities, order) => ({
+type: types.GROUP_FETCH_COMPLETED,
+payload: { 
+  entities,
+  order,
+ },
+});
+
+export const failGroupFetch = error => ({
+type: types.GROUP_FETCH_FAILED,
 payload: { error },
 });

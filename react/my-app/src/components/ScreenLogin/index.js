@@ -45,16 +45,6 @@ export const ScreenLogin = ({ authUsername = ''}) => {
         <div className='container'>
           <div className='row menuAuth'>
               <div className='col-sm-12'>
-              <li>
-                <Link exact to="/home" className='link'>Home</Link>
-              </li>
-
-              </div>
-              <div className='col-sm-12'>
-              <li>
-                <Link to="/sign-up" className='link'>Sign Up</Link>
-              </li>
-
               </div>
               <div className='col-sm-12'>
               <li>
