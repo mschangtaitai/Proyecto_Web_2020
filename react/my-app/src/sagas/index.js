@@ -24,6 +24,12 @@ import {
   watchRemoveUser
 } from './user/index'
 
+import {
+  watchEventUserFetch,
+  watchAddUserEvent,
+  watchRemoveUserEvent
+} from './events_users/index'
+
 function* rootSaga() {
   yield all([
     fork(watchLoginStarted),
@@ -37,7 +43,10 @@ function* rootSaga() {
     fork(watchUserFetch),
     fork(watchAddUser),
     fork(watchRemoveUser),
-    fork(watchGroupFetch)
+    fork(watchGroupFetch),
+    fork(watchEventUserFetch),
+    fork(watchAddUserEvent),
+    fork(watchRemoveUserEvent)   
   ]);
 }
 
