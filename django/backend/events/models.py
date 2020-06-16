@@ -24,6 +24,8 @@ class Event(models.Model):
         null=True,
         blank=True
     )
+  #  capacity = models.PositiveIntegerField(default=10)
+
 
 
 
