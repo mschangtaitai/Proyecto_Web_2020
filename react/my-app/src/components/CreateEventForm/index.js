@@ -15,6 +15,7 @@ const CreateEventForm = ({
   const [endTime, setEndTime] = useState('');
   const [description, setDescription] = useState('');
   const [expositor, setExpositor] = useState(''); 
+  const [capacity, setCapacity] = useState(''); 
 
   return (
     <div class='container'>
@@ -111,6 +112,17 @@ const CreateEventForm = ({
         />
       </p>
       </div>     
+
+      <div class='col-sm-12'>
+      <p>
+        <input
+          type="number"
+          placeholder="capacity"
+          value={capacity}
+          onChange={e => setCapacity(e.target.value)}
+        />
+      </p>
+      </div>     
       </div>
 
 
@@ -121,7 +133,7 @@ const CreateEventForm = ({
             <strong>{'Cargando...'}</strong>
           ) : (
             <button type="submit" class='btn btn-primary' onClick={
-              () => onSubmit({title, typeEvent, date, beginTime, endTime, description, expositor})
+              () => onSubmit({title, typeEvent, date, beginTime, endTime, description, expositor, capacity})
             }>
               {'Enviar'}
             </button>

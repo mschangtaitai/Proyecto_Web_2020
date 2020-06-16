@@ -24,10 +24,14 @@ class Event(models.Model):
         null=True,
         blank=True
     )
+<<<<<<< HEAD
   #  capacity = models.PositiveIntegerField(default=10)
+=======
+    capacity = models.PositiveIntegerField(default=10)
+>>>>>>> ded5b369557e236f11f16c900ca6e031a5e6918d
 
 
 
 
     def __str__(self):
-        return 'Event: {}'.format(self.name)
+        return 'Event: {}'.format(self.title)

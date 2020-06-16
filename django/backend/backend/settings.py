@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'events.apps.EventsConfig',
     'event_types.apps.EventTypesConfig',
     'hosts.apps.HostsConfig',
+    'event_assigns.apps.EventAssignsConfig',
+
 
 ]
 

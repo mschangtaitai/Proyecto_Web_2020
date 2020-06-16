@@ -5,6 +5,8 @@ from rest_framework.response import Response
 
 from permissions.services import APIPermissionClassFactory
 from events.models import Event
+from event_assigns.models import EventAssign
+from users.models import User
 from events.serializers import EventSerializer
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -23,6 +25,7 @@ class EventViewSet(viewsets.ModelViewSet):
                     'destroy': 'events.delete_event',
                     'update': 'events.change_event',
                     'partial_update': 'events.change_event',
+                    'getEventUsers': True,
                 }
             }
         ),

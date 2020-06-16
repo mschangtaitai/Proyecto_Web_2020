@@ -17,7 +17,7 @@ import * as schemas from '../../schemas/events'
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
 function* fetchEvents(action) {
-    console.log(fetchEvents)
+    console.log('Intentando fetchear')
     try {
       const isAuth = yield select(selectors.isAuthenticated);
       console.log('hellow')
@@ -66,7 +66,7 @@ function* fetchEvents(action) {
   
   export function* watchEventFetch() {
     yield takeEvery(
-      types.EVENT_ADDED_STARTED,
+      types.EVENTS_FETCH_STARTED,
       fetchEvents,
     );
   }
@@ -77,21 +77,20 @@ function* fetchEvents(action) {
   
       if (isAuth) {
         const token = yield select(selectors.getAuthToken);
+        console.log(action.payload.event)
         const response = yield call(
           fetch,
           `${API_BASE_URL}/api/v1/events/`,
           {
             method: 'POST',
-            body: JSON.stringify(action.payload),
+            body: JSON.stringify(action.payload.event),
             headers:{
               'Content-Type': 'application/json',
               'Authorization': `JWT ${token}`,
             },
           }
         );
-        console.log(response)
-        console.log(response.status)
-        console.log('payload')
+          
         console.log(action.payload)
         if (response.status === 201) {
           const jsonResult = yield response.json();
@@ -106,15 +105,15 @@ function* fetchEvents(action) {
           result,
           } = normalize(jsonResult, schemas.events);
   
-          yield put(
-             actions.completeFetchingEvents(
-               events,
-               result,
-             ),
-           );
+          // yield put(
+          //   actions.completeAddingEvent(
+          //     events,
+          //     result,
+          //   ),
+          // );
         } else {
-           const { non_field_errors } = yield response.json();
-           yield put(actions.failFetchingEvent(non_field_errors[0]));
+          // const { non_field_errors } = yield response.json();
+          // yield put(actions.failAddingEvent(non_field_errors[0]));
         }
       }
     } catch (error) {
@@ -149,18 +148,21 @@ function* removeEvent(action) {
         );
   
         if (response.status === 200) {
+          /*
+          const jsonResult = yield response.json();
           yield put(actions.completeRemovingEvent());
-          // const {
-          //   entities: { events },
-          //   result,
-          // } = normalize(jsonResult, schemas.events);
+           const {
+             entities: { events },
+             result,
+           } = normalize(jsonResult, schemas.events);
   
-          // yield put(
-          //   actions.completeFetchingEvents(
-          //     events,
-          //     result,
-          //   ),
-          // );
+           yield put(
+             actions.completeFetchingEvents(
+               events,
+               result,
+             ),
+           );
+           */
         } else {
           // const { non_field_errors } = yield response.json();
           // yield put(actions.failLogin(non_field_errors[0]));

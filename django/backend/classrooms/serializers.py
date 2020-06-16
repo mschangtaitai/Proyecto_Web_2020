@@ -7,6 +7,10 @@ class ClassroomSerializer(serializers.ModelSerializer):
         model = Classroom
         fields = (
             'id',
+<<<<<<< HEAD
             'name',
+=======
+            'course',
+>>>>>>> ded5b369557e236f11f16c900ca6e031a5e6918d
             'capacity'
         )
